@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+
+{% block cuerpo %}
+<div class="row"><!--la fila-->
+<div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!--columna izquierda-->
+    <h1>Mama</h1>
+    <div class="card"> <!--tajeta-->
+    <div class="card-body">
+        <form action="/registrarProducto/" method="POST"> {% csrf_token %} <!--formulario-->
+            <div class="form-group">
+                <input type="text" id="txtid_producto" name="txtid_producto" class="form-control"
+                placeholder="Id_Producto" minLenght="6" maxLenght="6" reqired>
+            </div>
+
+            <div class="form-group py-3">
+                <input type="text" id="txtprecio" name="txtprecio" class="form-control"
+                placeholder="Precio Producto" minLenght="6" maxLenght="6" reqired>
+            </div>
+
+            <div class="form-group py-2">
+                <input type="text" id="txtdiseno" name="txtdiseno" class="form-control"
+                placeholder="Diseno Producto" minLenght="6" maxLenght="6" reqired>
+            </div>
+
+            <div class="form-group py-3">
+                <input type="text" id="txtfecha_entrega" name="txt_entrega" class="form-control"
+                placeholder="Fecha Entrega" minLenght="6" maxLenght="6" reqired>
+            </div>
+
+            <div class="form-group py-3">
+                <input type="text" id="numcantidad" name="numcantidad" class="form-control"
+                value="1" min="1" max="20" reqired>
+            </div>
+
+            <div class="form-group py-3">
+                <input type="text" id="txtfecha_elaboracion" name="txtfecha_elaboracion" class="form-control"
+                placeholder="Fecha Elaboracion" minLenght="6" maxLenght="6" reqired>
+            </div>
+
+            <div class="form-group py-3">
+                <input type="text" id="txttamano" name="txttamano" class="form-control"
+                placeholder="Tamano Producto" minLenght="6" maxLenght="6" reqired>
+            </div>
+
+            <div class="form-group py-2">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form><!--formulario-->
+    </div>
+</div><!--tajeta-->
+</div><!--columna izquierda-->
+
+<div class="col-sm-12 col-md-8 col-lg-8 col-xl-4"><!--columna derecha-->
+    <h1>Listado de Materias</h1>
+    <div class="table-responsive"><!--tabla responsiva-->
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Diseno</th>
+                <th scope="col">Fecha Entrega</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Fecha Elaboracion</th>
+                <th scope="col">Tamano</th>
+                <th colspan="2">Credito</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for m in misproductos %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{m.id_producto}}</td>
+                    <td>{{m.precio}}</td>
+                    <td>{{m.diseno}}</td>
+                    <td>{{m.fecha_entrega}}</td>
+                    <td>{{m.cantidad}}</td>
+                    <td>{{m.fecha_elaboracion}}</td>
+                    <td>{{m.tamano}}</td>
+                    <td> <a href="seleccionarProducto/{{m.id_producto}}" class="btn btn-info">Editar</a> </td> 
+                    <td> <a href="borrarProducto/{{m.id_producto}}" class="btn btn-danger">Borrar</a> </td> 
+                </tr>    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div><!--tabla responsiva-->
+</div><!--columna derecha-->
+
+</div><!--la fila-->
+{% endblock %}
