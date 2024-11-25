@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %} <title> Mi tienda Paola Ramirez </title>  {% endblock titulo %}  
+
+{% block cuerpo %}
+
+<div class="d-flex flex-colum justify-content-center aling-items-center ">
+    <h1 class="mt-4 mb-4">Mi tienda Paola Ramirez</h1>
+    <img class="w-50" src="{% static 'img/artesania.jpg' %}" alt="Trulli" width="400" height="400"/>
+</div>
+{% endblock cuerpo %}
